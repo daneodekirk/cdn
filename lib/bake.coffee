@@ -21,6 +21,7 @@ app.get '*', (req, res) ->
   baseurl = "https://raw.github.com"
   requrl = url.parse(req.url).pathname
   request "#{baseurl}#{requrl}", (err, response, body) ->
+    res.send 'Not Found' if response.statusCode is 404
     throw err if err
     res.header 'Content-Type', mime.lookup requrl
     res.send body
