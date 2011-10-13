@@ -7,7 +7,8 @@
     "uglify-js" : "1.1.x",
     "less" : "1.1.x",
     "coffeekup" : "0.3.x",
-    "request" : "2.1.x"
+    "request" : "2.1.x",
+    "mime" : "1.2.x"
   },
   "engine": "node >= 0.4.1"
 }

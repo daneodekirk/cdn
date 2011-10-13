@@ -1,5 +1,6 @@
 request = require 'request'
 url     = require 'url'
+mime    = require 'mime'
 
 express = require 'express'
 
@@ -16,16 +17,14 @@ app.use express.static "#{STATIC}", { maxAge: ONEWEEK }
 app.use express.errorHandler()
 app.use express.compiler { src:"#{STATIC}", enable: ['less'] }
 
-#request 'https://raw.github.com/uweb/jquery.uw/master/src/min/jquery.uw.weather.min.js', (err, response, body) ->
 app.get '*', (req, res) ->
-  baseurl = 'https://raw.github.com'
-  console.log baseurl
-  request "#{baseurl}#{url.parse(req.url).pathname}", (err, response, body) ->
+  baseurl = "https://raw.github.com"
+  requrl = url.parse(req.url).pathname
+  request "#{baseurl}#{requrl}", (err, response, body) ->
     throw err if err
-    res.send if not err and response.statusCode is 200 then JSON.stringify response.headers else res.send 'Not found'
-    #console.log body if not err and response.statusCode is 200
-    
-
+    res.header 'Content-Type', mime.lookup requrl
+    res.send body
+    #res.send if not err and response.statusCode is 200 then JSON.stringify response.headers else res.send 'Not found'
 
 app.listen 1123
 console.log "Server running on port #{app.address().port}"
