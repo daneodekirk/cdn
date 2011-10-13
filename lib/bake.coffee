@@ -26,5 +26,6 @@ app.get '*', (req, res) ->
     res.send body
     #res.send if not err and response.statusCode is 200 then JSON.stringify response.headers else res.send 'Not found'
 
-app.listen 1123
+port = process.env.PORT or 1123
+app.listen port
 console.log "Server running on port #{app.address().port}"
