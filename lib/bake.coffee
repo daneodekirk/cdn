@@ -20,9 +20,9 @@ app.use express.compiler { src:"#{STATIC}", enable: ['less'] }
 app.get '*', (req, res) ->
   baseurl = "https://raw.github.com"
   requrl = url.parse(req.url).pathname
+  return res.render 'index' if requrl is '/'
   request "#{baseurl}#{requrl}", (err, response, body) ->
-    res.send 'Not Found', 404 if response.statusCode is 404
-    throw err if err
+    if response.statusCode is 404 then return res.render 'index.coffee', error:true, pathname:requrl, status:404
     res.header 'Content-Type', mime.lookup requrl
     res.send body
 
