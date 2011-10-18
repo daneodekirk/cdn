@@ -46,7 +46,7 @@ html ->
                 code ' https://raw.github.com'
                 br ->
                 text 'with '
-                code 'http://cdn.heroku.com'
+                code 'http://cdn.herokuapp.com'
               li "You're done"
       section ->
         div '.page-header', ->
