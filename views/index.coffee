@@ -51,10 +51,6 @@ html ->
       section ->
         div '.page-header', ->
         div '.row', ->
-          div '.pull-left', ->
-            span '.footer-span', ->
-              text 'built and designed by Dane Odekirk. help out at '
-              a href:'https://github.com/daneodekirk/shoelace', -> 'GitHub'
-              text '.'
-          div '.pull-right', -> 'put something intresting here'
+          span '.pull-left.span', -> "built and designed by Dane Odekirk. help out at #{ yield -> a href:'https://github.com/daneodekirk/shoelace', -> 'GitHub'}"
+          span '.pull-right', -> 'put something interesting here'
             
